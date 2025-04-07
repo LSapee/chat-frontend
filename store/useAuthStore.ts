@@ -77,8 +77,9 @@ export const useAuthStore = create<AuthState>((set,get)=>({
         }
     },
     connectSocket: ():void =>{
+        console.log("로그인")
         const {authUser} = get();
-        if(!authUser || get().socket?.conected)return ;
+        if(!authUser || get().socket?.connected)return ;
         //소켓 백엔드 연결
         const socket = io(BASE_URL,{
             query:{
@@ -92,7 +93,9 @@ export const useAuthStore = create<AuthState>((set,get)=>({
         });
     },
     disconnectSocket:():void=>{
-        if(get().socket?.conected) get().socket.disconnect();
-        set({socket:null});
+        console.log("disconnected","끊어짐");
+        if(get().socket?.connected) {
+            get().socket.disconnect();
+        }
     }
 }));

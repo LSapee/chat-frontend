@@ -4,7 +4,6 @@ import {useEffect, useState} from "react";
 import SidebarSkeleton from "@/comporents/skeletons/SidebarSkeleton";
 import {Users} from "lucide-react";
 import {useAuthStore} from "@/store/useAuthStore";
-import {log} from "node:util";
 
 const Sidebar = () =>{
     const {getUsers, users, selectedUser,setSelectedUser,isUsersLoading} = useChatStore();

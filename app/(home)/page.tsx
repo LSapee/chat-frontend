@@ -11,7 +11,7 @@ import NoChatSelected from "@/comporents/NoChatSelected";
 import ChatContainer from "@/comporents/ChatContainer";
 
 export default function HomePage() {
-    const {authUser,checkAuth,isCheckingAuth,onlineUsers} = useAuthStore();
+    const {authUser,checkAuth,isCheckingAuth} = useAuthStore();
     const {theme} = useThemeStore();
     const {selectedUser} = useChatStore();
 

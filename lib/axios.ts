@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const axiosInstanace = axios.create({
-    baseURL:"https://chatapi.lsapee.com/api/",
+    baseURL:process.env.BASE_URL,
     withCredentials: true,
 })

@@ -7,11 +7,33 @@ import MessageInput from "@/comporents/MessageInput";
 import MessageSkeleton from "@/comporents/skeletons/MessageSkeleton";
 import {useAuthStore} from "@/store/useAuthStore";
 import {formatMessageTime} from "@/lib/utils";
+import previewHandler from "@/lib/preview"
 
 const ChatContainer = () =>{
     const {messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeFromMessage } = useChatStore();
     const {authUser} = useAuthStore();
     const messageEndRef:any = useRef(null);
+
+    const LinkinMessage = (message:string) => {
+        let messageArr:string[] = message.split(" ");
+        // 링크가 http:// 시작하는 경우 또느 https:// 시작하는경우.
+        // 카카오톡 확인 해보니 링크 전 문장 + 링크 + 링크 후의 문장을 띄어쓰기로 구분하고 있기에 띄어쓰기로 링크 구분
+        let urlStartIndex:number = message.indexOf("http://") == -1 ? message.indexOf("https://") : message.indexOf("http://");
+        const firstMessage:string = message.substring(0,urlStartIndex );
+        let urlNxt:number = message.length;
+        messageArr.forEach((index) => {
+            if(message.indexOf(index)>urlStartIndex) urlNxt=message.indexOf(index);
+        })
+        let url:string = message.substring(urlStartIndex,urlNxt);
+        let lastMessage:string = message.substring(urlNxt,message.length);
+        return (
+            <>
+                <span>{firstMessage}</span>
+                <a href={url} target=" _blank" className="link-primary">{url}</a>
+                <span>{lastMessage}</span>
+            </>
+        )
+    }
 
     useEffect(()=>{
        getMessages(selectedUser._id);
@@ -63,7 +85,14 @@ const ChatContainer = () =>{
                              className="sm:max-w-[200px] rounded-md mb-2"
                                 />
                             )}
-                            {message.text && <p>{message.text}</p>}
+                            {message.text &&
+                                <p>
+                                    {message.text.includes("http") || message.text.includes("https") ?
+                                        LinkinMessage(message.text)
+                                        :
+                                        message.text}
+                                </p>
+                            }
                         </div>
                     </div>
                 ))}

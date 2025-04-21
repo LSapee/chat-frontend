@@ -7,7 +7,6 @@ import MessageInput from "@/comporents/MessageInput";
 import MessageSkeleton from "@/comporents/skeletons/MessageSkeleton";
 import {useAuthStore} from "@/store/useAuthStore";
 import {formatMessageTime} from "@/lib/utils";
-import previewHandler from "@/lib/preview"
 
 const ChatContainer = () =>{
     const {messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeFromMessage } = useChatStore();

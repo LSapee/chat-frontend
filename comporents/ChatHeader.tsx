@@ -4,9 +4,7 @@ import {X} from "lucide-react"
 // 채팅시 위에 나오는 헤더
 export default function ChatHeader(){
     const {selectedRoom,unSetSelectedRoom} = useChatStore();
-
     const {onlineUsers} = useAuthStore();
-
     return (
         <div className="p-2.5 border-b border-base-300">
             <div className="flex items-center justify-between">

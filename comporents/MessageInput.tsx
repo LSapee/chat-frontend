@@ -1,6 +1,6 @@
 import {useRef, useState} from "react";
 import {useChatStore} from "@/store/useChatStore";
-import {X, Image, Send} from "lucide-react"
+import {X, Image, Send, Video} from "lucide-react"
 import { toast } from 'react-toastify';
 
 export default function MessageInput(){
@@ -42,6 +42,10 @@ export default function MessageInput(){
             console.error("Failed to send message",err)
         }
     }
+    const handleLiveVideo = (e:any)=>{
+        alert("아직 준비중입니다.")
+    }
+
     return (
         <div className="p-4 w-full">
             {imagePreview && (
@@ -72,6 +76,17 @@ export default function MessageInput(){
                         value={text}
                         onChange={(e)=>setText(e.target.value)}
                     />
+                    <input
+                        type=""
+                        className="hidden"
+                        onChange={handleLiveVideo}
+                    />
+                    <button
+                        type="button"
+                        className={`hidden sm:flex btn btn-circle ${imagePreview ?  "text-emerald-500" : "text-zinc-400"}`}
+                        onClick={()=>alert("아직 준비중")}>
+                        <Video size={20}/>
+                    </button>
                     <input
                         type="file"
                         accept="image/*"

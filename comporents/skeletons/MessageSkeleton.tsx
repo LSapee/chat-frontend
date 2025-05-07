@@ -1,3 +1,5 @@
+
+// 로딩중 화면
 const MessageSkeleton = () => {
     const skeletonMessages = Array(6).fill(null);
 

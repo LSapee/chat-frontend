@@ -9,7 +9,7 @@ import {useAuthStore} from "@/store/useAuthStore";
 import {formatMessageTime} from "@/lib/utils";
 
 const ChatContainer = () =>{
-    const {messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unsubscribeFromMessage } = useChatStore();
+    const {messages, getMessages, isMessagesLoading, selectedRoom, subscribeToMessages, unsubscribeFromMessage } = useChatStore();
     const {authUser} = useAuthStore();
     const messageEndRef:any = useRef(null);
 
@@ -33,12 +33,11 @@ const ChatContainer = () =>{
             </>
         )
     }
-
-    useEffect(()=>{
-       getMessages(selectedUser._id);
-       subscribeToMessages();
-       return () => unsubscribeFromMessage();
-    },[selectedUser._id,getMessages,subscribeToMessages,unsubscribeFromMessage]);
+    useEffect(() => {
+        getMessages(selectedRoom?.roomID);
+        subscribeToMessages();
+        return () => unsubscribeFromMessage();
+    },[selectedRoom?.roomID,getMessages,subscribeToMessages,unsubscribeFromMessage]);
 
     useEffect(() => {
         if (messageEndRef.current && messages) {
@@ -67,7 +66,7 @@ const ChatContainer = () =>{
                         <div className="chat-image avatar">
                             <div className="size-10 rounded-full border">
                                 <img
-                                    src={message.senderId === authUser._id ? authUser.profilePic ||"/avatar.png" : selectedUser.profilePic||"/avatar.png"}
+                                    src={message.senderId === authUser._id ? authUser.profilePic ||"/avatar.png" : selectedRoom.receiverId[0].profilePic||"/avatar.png"}
                                     alt="profilePic"
                                 />
                             </div>
@@ -77,11 +76,11 @@ const ChatContainer = () =>{
                                 {formatMessageTime(message.createdAt)}
                             </time>
                         </div>
-                        <div className="chat-bubble flex flex-col">
+                        <div className="chat-bubble flex flex-col ">
                             {message.imageUrl &&(
                                 <img src={message.imageUrl}
                                 alt="Attachment"
-                             className="sm:max-w-[200px] rounded-md mb-2"
+                                className="sm:max-w-[200px] rounded-md mb-2"
                                 />
                             )}
                             {message.text &&

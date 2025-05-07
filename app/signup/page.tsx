@@ -82,7 +82,7 @@ export default function SignupPage() {
                             <input
                                 type="email"
                                 className={`input input-bordered w-full pl-10`}
-                                placeholder="abc@abc.com"
+                                placeholder="email"
                                 value={formData.email}
                                 onChange={(e)=>setFormData({...formData, email:e.target.value})}
                                 />
@@ -99,7 +99,7 @@ export default function SignupPage() {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 className={`input input-bordered w-full pl-10`}
-                                placeholder="*******"
+                                placeholder="Password must be at least 8 characters"
                                 value={formData.password}
                                 onChange={(e)=>setFormData({...formData, password:e.target.value})}
                                 />

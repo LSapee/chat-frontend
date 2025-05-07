@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import {AuthState} from "@/interface/Auth.interface";
 import {io} from "socket.io-client";
 
-const BASE_URL = "https://chat.lsapee.com/chat"
+const BASE_URL = "https://chatapi.lsapee.com/chat"
 
 export const useAuthStore = create<AuthState>((set,get)=>({
     authUser:null,

@@ -3,9 +3,8 @@ import {axiosInstanace} from "@/lib/axios";
 import { toast } from 'react-toastify';
 import {AuthState} from "@/interface/Auth.interface";
 import {io} from "socket.io-client";
-import {useChatStore} from "@/store/useChatStore";
 
-const BASE_URL = "http://localhost:5001/chat"
+const BASE_URL = "https://chat.lsapee.com/chat"
 
 export const useAuthStore = create<AuthState>((set,get)=>({
     authUser:null,

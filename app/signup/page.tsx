@@ -11,14 +11,15 @@ import {useThemeStore} from "@/store/useThemeStore";
 export default function SignupPage() {
     const {authUser,checkAuth,isCheckingAuth} = useAuthStore();
     const [showPassword,setShowPassword] = useState(false);
+    const {signup,isSigningUp}= useAuthStore();
+    const {theme,setLocalTheme} = useThemeStore();
     const [formData,setFormData] = useState({
         fullName:"",
         email:"",
         password:"",
     });
     useEffect(() => {checkAuth()},[checkAuth]);
-    const {signup,isSigningUp}= useAuthStore();
-    const {theme} = useThemeStore();
+    useEffect(() => {setLocalTheme();}, []);
     const validateForm = ()=>{
         if(!formData.fullName.trim()) return toast.error("Please enter your full name");
         if(!formData.email.trim()) return toast.error("Email is required");

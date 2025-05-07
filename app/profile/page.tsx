@@ -9,6 +9,7 @@ import {useThemeStore} from "@/store/useThemeStore"
 export default function ProfilePage() {
     const {authUser,checkAuth,isCheckingAuth,isUpdatingProfile,updateProfile} = useAuthStore();
     const [selectedImg, setSelectedImg] =  useState(null);
+    const {theme,setLocalTheme} = useThemeStore();
     const hanleImageUpload = (e:any) => {
         const file = e.target.files[0];
         if(!file) return;
@@ -23,12 +24,12 @@ export default function ProfilePage() {
     }
 
     useEffect(() => {checkAuth()},[checkAuth]);
+    useEffect(() => {setLocalTheme();}, []);
     if(isCheckingAuth && !authUser) return (
         <div className="flex items-center justify-center h-screen">
             <Loader className="size-10 animate-spin"/>
         </div>
     )
-    const {theme} = useThemeStore();
     return (
         <div className="h-screen pt-20" data-theme={theme}>
             {!authUser ? redirect("/login") : null}

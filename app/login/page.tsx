@@ -17,8 +17,11 @@ export default function LoginPage() {
         password:"",
     })
     const {login,isLoggingIn} = useAuthStore();
-    const {theme} = useThemeStore();
+    const {theme,setLocalTheme} = useThemeStore();
     useEffect(() => {checkAuth()},[checkAuth]);
+    useEffect(() => {
+        setLocalTheme();
+    }, []);
 
     const handleSubmit = async (e:any) =>{
         e.preventDefault();

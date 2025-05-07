@@ -7,8 +7,7 @@ import {Loader, Send} from "lucide-react";
 
 export default function SettingsPage() {
     const {authUser,checkAuth,isCheckingAuth,isUpdatingProfile,updateProfile} = useAuthStore();
-    const {theme,setTheme,initializeTheme} = useThemeStore();
-
+    const {theme,setTheme,setLocalTheme,initializeTheme} = useThemeStore();
     const PREVIEW_MESSAGES = [
         {id:1, content:"Hey! How's it going?",isSent:false},
         {id:2, content:"I'm doing great! Just working on some new features." ,isSent:true},
@@ -19,6 +18,7 @@ export default function SettingsPage() {
             initializeTheme();
         }
     },[checkAuth])
+    useEffect(() => {setLocalTheme();}, []);
     if(isCheckingAuth && !authUser) return (
         <div className="flex items-center justify-center h-screen">
             <Loader className="size-10 animate-spin"/>

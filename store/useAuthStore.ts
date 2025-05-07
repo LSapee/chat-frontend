@@ -31,12 +31,10 @@ export const useAuthStore = create<AuthState>((set,get)=>({
         set({isSigningUp:true});
         try{
             const res = await axiosInstanace.post("/auth/signup",data);
-            console.log("회원가입 : ",res.data);
             set({authUser:res.data});
             toast.success("Account create successfully");
             get().connectSocket();
         }catch (error:any){
-            console.log("error : ",error.response.data.message);
             toast.error(`Error creating account : ${error.response.data.message}`);
         } finally{
             set({isSigningUp:false});

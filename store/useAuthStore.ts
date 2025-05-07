@@ -3,8 +3,9 @@ import {axiosInstanace} from "@/lib/axios";
 import { toast } from 'react-toastify';
 import {AuthState} from "@/interface/Auth.interface";
 import {io} from "socket.io-client";
+import {useChatStore} from "@/store/useChatStore";
 
-const BASE_URL = "https://chatapi.lsapee.com/chat"
+const BASE_URL = "http://localhost:5001/chat"
 
 export const useAuthStore = create<AuthState>((set,get)=>({
     authUser:null,
@@ -31,11 +32,13 @@ export const useAuthStore = create<AuthState>((set,get)=>({
         set({isSigningUp:true});
         try{
             const res = await axiosInstanace.post("/auth/signup",data);
+            console.log("회원가입 : ",res.data);
             set({authUser:res.data});
             toast.success("Account create successfully");
             get().connectSocket();
         }catch (error:any){
-            toast.error("Error creating account",error.response.data.message);
+            console.log("error : ",error.response.data.message);
+            toast.error(`Error creating account : ${error.response.data.message}`);
         } finally{
             set({isSigningUp:false});
         }
@@ -48,7 +51,7 @@ export const useAuthStore = create<AuthState>((set,get)=>({
             toast.success("Logged in successfully");
             get().connectSocket();
         }catch (error:any){
-            toast.error("Error login",error.response.data.message);
+            toast.error(`Error login : ${error.response.data.message}`);
         }finally{
             set({isLoggingIn:false});
         }
@@ -87,6 +90,7 @@ export const useAuthStore = create<AuthState>((set,get)=>({
         });
         socket.connect();
         set({socket:socket});
+        socket.emit("allRoomConnected");
         socket.on("getOnlineUsers",(userIds)=>{
             set({onlineUsers:userIds});
         });
@@ -94,6 +98,7 @@ export const useAuthStore = create<AuthState>((set,get)=>({
     disconnectSocket:():void=>{
         if(get().socket?.connected) {
             get().socket.disconnect();
+
         }
     },
 }));

@@ -18,9 +18,15 @@ export default function LoginPage() {
     })
     const {login,isLoggingIn} = useAuthStore();
     const {theme,setLocalTheme} = useThemeStore();
+
+    const alerter = () =>{
+        const todayTime:any = new Date().getDay();
+        if(todayTime === 0 || todayTime === 6) alert("비용 절감 문제로 주말에는 ALB를 잠시 해제 해놓았습니다. 평일에 다시 접속해 주세요.");
+    }
     useEffect(() => {checkAuth()},[checkAuth]);
     useEffect(() => {
         setLocalTheme();
+        alerter();
     }, []);
 
     const handleSubmit = async (e:any) =>{

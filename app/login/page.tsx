@@ -44,8 +44,7 @@ export default function LoginPage() {
                                 className="size-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                 <MessageSquare className="size-6 text-primary"/>
                             </div>
-                            <h1 className="text-2xl font-bold mt-2">Sign up</h1>
-                            <p className="text-base-content/60">Get started with your free account</p>
+                            <h1 className="text-2xl font-bold mt-2">Chatty</h1>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -102,9 +101,8 @@ export default function LoginPage() {
                     </form>
                     <div className="text-center">
                         <p className="text-base-content/60">
-                            Already have an account?{" "}
                             <Link href="/signup" className="link link-primary">
-                                Create Account
+                                회원가입
                             </Link>
                         </p>
                     </div>
@@ -113,7 +111,7 @@ export default function LoginPage() {
 
             {/*    right side*/}
             <AuthImagePattern
-                title="Join our community"
+                title="회원가입을 환영합니다."
                 subtitle="connect with friends, chare moments, and stay in touch with you"
             />
         </div>

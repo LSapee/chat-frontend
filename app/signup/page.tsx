@@ -21,11 +21,11 @@ export default function SignupPage() {
     useEffect(() => {checkAuth()},[checkAuth]);
     useEffect(() => {setLocalTheme();}, []);
     const validateForm = ()=>{
-        if(!formData.fullName.trim()) return toast.error("Please enter your full name");
-        if(!formData.email.trim()) return toast.error("Email is required");
-        if(!/\S+@\S+\.\S+/.test(formData.email))return toast.error("Invalid valid email");
-        if(!formData.password) return toast.error("Password is required");
-        if(formData.password.length<8) return toast.error("Password must be at least 8 characters");
+        if(!formData.fullName.trim()) return toast.error("이름을 입력해주세요.");
+        if(!formData.email.trim()) return toast.error("이메일을 정확하게 입력하여주세요.");
+        if(!/\S+@\S+\.\S+/.test(formData.email))return toast.error("이메일 형식이 아닙니다.");
+        if(!formData.password) return toast.error("패스워드를 입력해주세요.");
+        if(formData.password.length<8) return toast.error("패스워드를 8자리 이상 입력해주세요.");
         return true;
     }
     const handleSubmit = (e:any)=>{
@@ -49,14 +49,13 @@ export default function SignupPage() {
                             <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                                 <MessageSquare className="size-6 text-primary"/>
                             </div>
-                            <h1 className="text-2xl font-bold mt-2">Sign up</h1>
-                            <p className="text-base-content/60">Get started with your free account</p>
+                            <h1 className="text-2xl font-bold mt-2">회원가입</h1>
                         </div>
                     </div>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="from-control">
                             <label className="label">
-                                <span className="label-text font-medium">Full Name</span>
+                                <span className="label-text font-medium">이름</span>
                             </label>
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -65,7 +64,7 @@ export default function SignupPage() {
                                 <input
                                     type="text"
                                     className={`input input-bordered w-full pl-10`}
-                                    placeholder="full name"
+                                    placeholder="이름"
                                     value={formData.fullName}
                                     onChange={(e)=>setFormData({...formData, fullName:e.target.value})}
                                     />
@@ -83,7 +82,7 @@ export default function SignupPage() {
                             <input
                                 type="email"
                                 className={`input input-bordered w-full pl-10`}
-                                placeholder="email"
+                                placeholder="asd@asd.com"
                                 value={formData.email}
                                 onChange={(e)=>setFormData({...formData, email:e.target.value})}
                                 />
@@ -100,7 +99,7 @@ export default function SignupPage() {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 className={`input input-bordered w-full pl-10`}
-                                placeholder="Password must be at least 8 characters"
+                                placeholder="비밀번호는 8자리 이상을 사용해주세요."
                                 value={formData.password}
                                 onChange={(e)=>setFormData({...formData, password:e.target.value})}
                                 />
@@ -118,14 +117,14 @@ export default function SignupPage() {
                                     <Loader2 className="size-5 animate-spin"/>
                                     Loading...
                                 </>
-                                ):("Create Account")}
+                                ):("회원가입")}
                         </button>
                     </form>
                     <div className="text-center">
                         <p className="text-base-content/60">
-                            Already have an account?{" "}
+                            이미 회원이신가요?{" "}
                             <Link href="/login" className="link link-primary">
-                                Sign in
+                                로그인하러 가기
                             </Link>
                         </p>
                     </div>
@@ -134,7 +133,7 @@ export default function SignupPage() {
 
         {/*    right side*/}
             <AuthImagePattern
-                title="Join our community"
+                title="회원가입을 환영합니다."
                 subtitle="connect with friends, chare moments, and stay in touch with you"
             />
         </div>

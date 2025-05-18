@@ -20,7 +20,7 @@ const Footer = () =>{
                         onClick={() => unSetSelectedUser(null)}
                     >
                         <Users/>
-                        <p>Users</p>
+                        <p>유저들</p>
                     </Link>
                     <Link
                         href={"/chats"}
@@ -30,7 +30,7 @@ const Footer = () =>{
                         onClick={() => unSetSelectedRoom(null)}
                     >
                         <MessageCircle/>
-                        <p>chats</p>
+                        <p>채팅</p>
                     </Link>
                     <Link
                         href={"/profile"}
@@ -39,7 +39,7 @@ const Footer = () =>{
                         `}
                     >
                             <User/>
-                            <p>Profile</p>
+                            <p>프로필</p>
                     </Link>
                     <Link
                         href={"/settings"}
@@ -48,7 +48,7 @@ const Footer = () =>{
                             `}
                     >
                         <Settings/>
-                        <p>Settings</p>
+                        <p>설정</p>
                     </Link>
                 </div>
             </div>

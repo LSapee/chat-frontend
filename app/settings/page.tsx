@@ -9,8 +9,8 @@ export default function SettingsPage() {
     const {authUser,checkAuth,isCheckingAuth,isUpdatingProfile,updateProfile} = useAuthStore();
     const {theme,setTheme,setLocalTheme,initializeTheme} = useThemeStore();
     const PREVIEW_MESSAGES = [
-        {id:1, content:"Hey! How's it going?",isSent:false},
-        {id:2, content:"I'm doing great! Just working on some new features." ,isSent:true},
+        {id:1, content:"안녕하세요?",isSent:false},
+        {id:2, content:"안녕하세요?" ,isSent:true},
     ]
     useEffect(() => {
         checkAuth()
@@ -28,8 +28,8 @@ export default function SettingsPage() {
         <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl"  data-theme={theme}>
             <div className="space-y-6">
                 <div className="flex flex-col gap-1">
-                    <h2 className="text-lg font-semibold">Theme</h2>
-                    <p className="text-sm text-base-content/70">Choose a theme for your chat interface</p>
+                    <h2 className="text-lg font-semibold">테마</h2>
+                    <p className="text-sm text-base-content/70">원하시는 테마를 선택하여 주세요.</p>
                 </div>
 
                 <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
@@ -54,7 +54,7 @@ export default function SettingsPage() {
                         </button>
                     ))}
                 </div>
-                <h3 className="text-lg font-semibold mb-3">Preview</h3>
+                <h3 className="text-lg font-semibold mb-3">미리보기</h3>
                 <div className="rounded-xl border border-base-300 overflow-thidden bg-base-100 shadow-lg">
                     <div className="p-4 bg-base-200">
                         <div className="max-w-lg mx-auto">
@@ -65,7 +65,7 @@ export default function SettingsPage() {
                                             J
                                         </div>
                                         <div>
-                                            <h3 className="font-medium text-sm">John Doe</h3>
+                                            <h3 className="font-medium text-sm">홍길동</h3>
                                             <p className="text-xs text-base-content/70">Online</p>
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@ export default function SettingsPage() {
                                             type="text"
                                             className="input input-bordered flex-1 text-sm h-10"
                                             placeholder="Type a message..."
-                                            value="This is a preview"
+                                            value="미리보기 입니다."
                                             readOnly
                                         />
                                         <button className="btn btn-primary h-10 min-h-0">

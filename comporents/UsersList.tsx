@@ -20,7 +20,7 @@ const UsersList = () =>{
             <div className="border-b border-base-300 w-full p-5">
                 <div className="flex items-center gap-2">
                 <Users className ="2-6 h-6"/>
-                <span className="font-medium hidden lg:block">Users</span>
+                <span className="font-medium hidden lg:block">유저</span>
             </div>
                  {/*fillter*/}
                 <div className="mt-3 hidden lg:flex items-center gap-2">
@@ -31,9 +31,9 @@ const UsersList = () =>{
                             onChange={(e)=>setShowOnline(e.target.checked)}
                             className="checkbox checkbox-sm"
                         />
-                        <span className="text-sm">Show online only</span>
+                        <span className="text-sm">현재 접속중인 유저 보기</span>
                     </label>
-                    <span className="text-xs text-zinc-500">({onlineUsers.length-1 } online)</span>
+                    <span className="text-xs text-zinc-500">({onlineUsers.length-1 } 접속중)</span>
                 </div>
             </div>
             <div className="overflow-y-auto w-full py-3">
@@ -63,7 +63,7 @@ const UsersList = () =>{
                     </button>
                 ))}
                 {filteredUsers.length === 0 &&(
-                    <div className="text-center text-zinc-500 py-4">No online users</div>
+                    <div className="text-center text-zinc-500 py-4">현재 접속중인 유저가 없습니다.</div>
                 )}
             </div>
         </aside>
